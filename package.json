@@ -126,7 +126,6 @@
     ]
   },
   "overrides": {
-    "rimraf": "^5.0.7",
     "tar": "^7.4.3",
     "@octokit/rest": "^20.0.2",
     "@tootallnate/once": "3.0.1",
@@ -144,8 +143,10 @@
     "posttest": "npm run lint",
     "lint": "eslint src test e2e",
     "gen-health": "node bin/gen-health-table.js",
-    "prepack": "oclif manifest && oclif readme",
+    "prepack": "npm run check-overrides && oclif manifest && oclif readme",
     "version": "oclif readme && git add README.md",
-    "e2e": "jest --collectCoverage=false --testRegex './e2e/e2e.js'"
+    "e2e": "jest --collectCoverage=false --testRegex './e2e/e2e.js'",
+    "check-overrides": "node bin/check-overrides.js",
+    "check-overrides:md": "node bin/check-overrides.js --markdown"
   }
 }
